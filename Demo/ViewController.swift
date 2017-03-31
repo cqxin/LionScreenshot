@@ -10,23 +10,27 @@ import UIKit
 import LionScreenshot
 
 class ViewController: UIViewController, UITableViewDataSource {
+    
+    private struct ColorValue{
+        let red:    CGFloat
+        let green:  CGFloat
+        let blue:   CGFloat
+    }
 
     @IBOutlet weak var tableView: UITableView!
-    
-    var coclors = [UIColor]()
-    var screenShot: LionScreenshot!
+    private var colorValues = [ColorValue]()
+    private var screenShot: LionScreenshot!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         for _ in 1...100 {
-            self.coclors.append(UIColor(red:   CGFloat(arc4random()) / CGFloat(UInt32.max),
-                                        green: CGFloat(arc4random()) / CGFloat(UInt32.max),
-                                        blue:  CGFloat(arc4random()) / CGFloat(UInt32.max),
-                                        alpha: 1))
+            self.colorValues.append(ColorValue(red:   CGFloat(arc4random()) / CGFloat(UInt32.max),
+                                          green: CGFloat(arc4random()) / CGFloat(UInt32.max),
+                                          blue:  CGFloat(arc4random()) / CGFloat(UInt32.max)))
         }
-        
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ColorCell")
+        
         self.screenShot = LionScreenshot(view: self.tableView)
         
         let layer = self.screenShot.layer
@@ -46,14 +50,27 @@ class ViewController: UIViewController, UITableViewDataSource {
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.coclors.count
+        return self.colorValues.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ColorCell", for: indexPath)
-        cell.backgroundColor = self.coclors[indexPath.row]
+        let colorValue = self.colorValues[indexPath.row]
+        cell.backgroundColor = UIColor(red:     colorValue.red,
+                                       green:   colorValue.green,
+                                       blue:    colorValue.blue,
+                                       alpha:   1)
         cell.textLabel?.text = "\(indexPath.row)"
+        let negativeColorValue = self.negativeColorValue(value: colorValue)
+        cell.textLabel?.textColor = UIColor(red:    negativeColorValue.red,
+                                            green:  negativeColorValue.green,
+                                            blue:   negativeColorValue.blue,
+                                            alpha:  1)
         return cell
+    }
+    
+    private func negativeColorValue(value: ColorValue) -> ColorValue {
+        return ColorValue(red: 1.0 - value.red, green: 1.0 - value.green, blue: 1.0 - value.blue)
     }
 
 }

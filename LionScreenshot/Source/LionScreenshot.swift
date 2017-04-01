@@ -10,25 +10,6 @@ import UIKit
 
 public class LionScreenshot: NSObject {
     
-    
-    private struct ShotImageInfo{
-        let origin: CGPoint
-        let image: UIImage
-    }
-    
-    private var previewLayer: CALayer?
-    
-    private let processView: UIView
-
-    private var shotImageInfos = [ShotImageInfo]()
-    
-    private var minPoint = CGPoint.zero
-    private var maxPoint = CGPoint.zero
-    
-    private var originPoint: CGPoint
-    
-    
-    
     public var layer: CALayer{
         get{
             if let layer = self.previewLayer{
@@ -49,7 +30,6 @@ public class LionScreenshot: NSObject {
     
     public init(view: UIScrollView) {
         self.processView = view
-        self.originPoint = self.processView.layer.bounds.origin
     }
     
     public func begin() {
@@ -60,7 +40,7 @@ public class LionScreenshot: NSObject {
             self.shotImageInfos.removeAll()
             self.previewLayer?.contents = nil
         }
-
+        
         let layerPoint = self.processView.layer.bounds.origin
         let layerSize = self.processView.layer.bounds.size
         self.minPoint = layerPoint
@@ -86,8 +66,22 @@ public class LionScreenshot: NSObject {
             return image
         }
     }
-
     
+    
+    private struct ShotImageInfo{
+        let origin: CGPoint
+        let image: UIImage
+    }
+    
+    private var previewLayer: CALayer?
+    
+    private let processView: UIView
+
+    private var shotImageInfos = [ShotImageInfo]()
+    
+    private var minPoint = CGPoint.zero
+    private var maxPoint = CGPoint.zero
+
     override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "contentOffset" {
             

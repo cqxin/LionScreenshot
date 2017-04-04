@@ -1,6 +1,6 @@
 # LionScreenshot
 
-screenshot for tableview
+Screenshot for tableview
 
 <img src="https://raw.githubusercontent.com/hongcaiyu/LionScreenshot/master/demo.gif" width="320" /><img src="https://raw.githubusercontent.com/hongcaiyu/LionScreenshot/master/screenshot.png" width="320" />
 
@@ -8,7 +8,7 @@ screenshot for tableview
 
 Create screenshot for view
 ```swift
-public init(view: UIScrollView)
+public init(view: UIView)
 ```
 
 Start the screenshot

@@ -17,6 +17,16 @@
 		184281BA1E8DE03800369DFC /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184281B91E8DE03800369DFC /* SingleImageViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		18251AFA1E8F49DF00539AE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18168F711E8D6C63000A835E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18168F791E8D6C63000A835E;
+			remoteInfo = LionScreenshot;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		18168F7A1E8D6C63000A835E /* LionScreenshot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LionScreenshot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18168F7D1E8D6C63000A835E /* LionScreenshot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LionScreenshot.h; sourceTree = "<group>"; };
@@ -143,6 +153,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				18251AFB1E8F49DF00539AE9 /* PBXTargetDependency */,
 			);
 			name = Demo;
 			productName = Demo;
@@ -229,6 +240,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18251AFB1E8F49DF00539AE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18168F791E8D6C63000A835E /* LionScreenshot */;
+			targetProxy = 18251AFA1E8F49DF00539AE9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		18168F921E8D6CD6000A835E /* Main.storyboard */ = {
@@ -394,11 +413,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hongcaiyu.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -406,11 +429,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hongcaiyu.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

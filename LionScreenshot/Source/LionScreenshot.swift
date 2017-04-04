@@ -40,13 +40,15 @@ public class LionScreenshot: NSObject {
                 return layer
             }else{
                 let layer = CALayer()
-                layer.contentsGravity = kCAGravityResizeAspect
-                layer.shadowOpacity = 0.382
-                layer.shadowOffset = CGSize.zero
-                self.previewLayer = layer
-                if !self.shotImageInfos.isEmpty {
-                    layer.contents = self.renderWholeImage()?.cgImage
+                layer.transform = CATransform3DMakeScale(0.13, 0.13, 1)
+                for info in self.shotImageInfos{
+                    let subLayer = CALayer()
+                    subLayer.frame = CGRect(origin: info.origin, size: info.image.size)
+                    subLayer.contents = info.image.cgImage
+                    layer.addSublayer(subLayer)
                 }
+                layer.bounds.origin = self.minPoint
+                self.previewLayer = layer
                 return layer
             }
         }
@@ -64,7 +66,6 @@ public class LionScreenshot: NSObject {
     }
     
     public func begin() {
-        
         if self.shotImageInfos.isEmpty {
             if let scrollView = self.processView as? UIScrollView{
                 self.horizontalScrollIndicatorStatus = scrollView.showsHorizontalScrollIndicator
@@ -75,7 +76,7 @@ public class LionScreenshot: NSObject {
             }
         }else{
             self.shotImageInfos.removeAll()
-            self.previewLayer?.contents = nil
+            self.previewLayer?.sublayers?.removeAll()
         }
         
         let layerOrigin = self.processView.layer.bounds.origin
@@ -93,9 +94,6 @@ public class LionScreenshot: NSObject {
     }
     
     public func end() -> UIImage? {
-        
-        
-
         if self.shotImageInfos.isEmpty {
             return nil
         }else{
@@ -106,7 +104,7 @@ public class LionScreenshot: NSObject {
             }
             let image = self.renderWholeImage()
             self.shotImageInfos.removeAll()
-            self.previewLayer?.contents = nil
+            self.previewLayer?.sublayers?.removeAll()
             return image
         }
     }
@@ -192,7 +190,11 @@ public class LionScreenshot: NSObject {
     private func appendImageInfo(info: ShotImageInfo){
         self.shotImageInfos.append(info)
         if let previewLayer = self.previewLayer{
-            previewLayer.contents = self.renderWholeImage()?.cgImage
+            let subLayer = CALayer()
+            subLayer.frame = CGRect(origin: info.origin, size: info.image.size)
+            subLayer.contents = info.image.cgImage
+            previewLayer.addSublayer(subLayer)
+            layer.bounds.origin = self.minPoint
         }
     }
     

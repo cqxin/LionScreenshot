@@ -15,10 +15,13 @@ public class LionScreenshot: NSObject {
         let image: UIImage
     }
     
+    /// 预览截图的层
     private var previewLayer: CALayer?
     
+    /// 被处理的视图
     private let processView: UIView
     
+    /// 存放截出图片信息的数组
     private var shotImageInfos = [ShotImageInfo]()
     
     private var minPoint = CGPoint.zero
@@ -28,6 +31,7 @@ public class LionScreenshot: NSObject {
     private var horizontalScrollIndicatorStatus: Bool = true
     private var verticalScrollIndicatorStatus: Bool = true
     
+    /// 如果是图只是单个方向的滚动最好将此设为false效率较高，如果是有多个方向的滚动请将此设为true才能完整的截图！
     public var repetition: Bool
     
     public var layer: CALayer{
@@ -115,7 +119,6 @@ public class LionScreenshot: NSObject {
             let layerSize = self.processView.layer.bounds.size
             var offset = CGPoint.zero
             var size = CGSize.zero
-            
             
             let compareMinX: CGFloat
             let compareMaxX: CGFloat

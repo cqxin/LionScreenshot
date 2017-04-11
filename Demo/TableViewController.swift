@@ -1,19 +1,19 @@
 //
-//  ViewController.swift
-//  Demo
+//  TableViewController.swift
+//  LionScreenshot
 //
-//  Created by hcy on 2017/3/31.
+//  Created by hcy on 2017/4/5.
 //  Copyright © 2017年 hongcaiyu. All rights reserved.
 //
 
 import UIKit
 import LionScreenshot
 
-class ViewController: UIViewController, UITableViewDataSource {
+class TableViewController: UIViewController, UITableViewDataSource {
 
-    @IBOutlet weak var tableView: UITableView!
     private var colors = [UIColor]()
     private var screenShot: LionScreenshot!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,13 +37,13 @@ class ViewController: UIViewController, UITableViewDataSource {
     override func viewWillAppear(_ animated: Bool) {
         self.screenShot.begin()
     }
-
+    
     @IBAction func shot(_ sender: UIBarButtonItem) {
         if let image = self.screenShot.end(){
             self.navigationController?.pushViewController(SingleImageViewController(image: image), animated: true)
         }
     }
-
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.colors.count
@@ -57,4 +57,3 @@ class ViewController: UIViewController, UITableViewDataSource {
         return cell
     }
 }
-

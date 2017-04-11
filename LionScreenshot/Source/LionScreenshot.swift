@@ -16,7 +16,7 @@ public class LionScreenshot: NSObject {
     }
     
     /// 预览截图的层
-    private var previewLayer: CALayer?
+    private weak var previewLayer: CALayer?
     
     /// 被处理的视图
     private let processView: UIView
@@ -232,6 +232,10 @@ public class LionScreenshot: NSObject {
             UIGraphicsEndImageContext()
             return nil
         }
+    }
+    
+    deinit {
+        let _ = self.end()
     }
 
 }

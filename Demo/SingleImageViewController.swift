@@ -24,6 +24,7 @@ class SingleImageViewController: UIViewController, UIScrollViewDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Image"
         self.view.backgroundColor = UIColor.white
         
         if let image = self.image {

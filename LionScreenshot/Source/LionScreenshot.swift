@@ -235,7 +235,13 @@ public class LionScreenshot: NSObject {
     }
     
     deinit {
-        let _ = self.end()
+        if !self.shotImageInfos.isEmpty{
+            if let scrollView = self.processView as? UIScrollView{
+                scrollView.showsHorizontalScrollIndicator = self.horizontalScrollIndicatorStatus
+                scrollView.showsVerticalScrollIndicator = self.verticalScrollIndicatorStatus
+                scrollView.removeObserver(self, forKeyPath: "contentOffset")
+            }
+        }
     }
 
 }
